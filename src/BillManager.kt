@@ -1,18 +1,17 @@
-import java.io.File
-import kotlin.io.readLines
+class BillManager(val bills: List<Bill>) {
+    fun printBills() {
+        bills.forEach { println(it) }
+    }
 
-class BillManager (fileName: String) {
-    val bills: List<Bill>
-
-    init {
-        bills = try {
-            File(fileName).readLines().map { line ->
-                val splittedLine = line.split(" ")
-                Bill(splittedLine[0], splittedLine[1], splittedLine[2])
+    companion object {
+        fun fromFile(fileName: String): BillManager {
+            val bills = try {
+                java.io.File(fileName).readLines().map { line -> Bill.fromLine(line) }
+            } catch (e: Exception) {
+                println("Failed to read file: ${e.message}")
+                emptyList()
             }
-        } catch (e: Exception) {
-            println("readLine() failed: ${e.message}")
-            emptyList()
+            return BillManager(bills)
         }
     }
 }
