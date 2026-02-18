@@ -1,0 +1,8 @@
+Jonas 9,00 Max,Susan,Marie,Lynn,Jonas
+Jonas 18,80 Lynn
+Jonas 24,75 Marie
+Elia 33,00 Susan,Max
+Elia 231,00 Elia,Marie,Jonas,Lynn,Jonah,Luisa
+Susan 87,99 Elia,Marie,Jonas,Lynn,Jonah,Luisa,Susan,Max
+Marie 22,90 Elia,Marie,Jonas,Lynn,Jonah,Luisa,Susan,Max
+Lynn 60,00 Marie,Jonas

@@ -16,10 +16,10 @@ class TransactionManager(val balanceManager: BalanceManager) {
 
     private fun calculateTransactionAmount(min: Int, max: Int): Int {
         val sum = min + max
-        if (sum >= 0) {
-            return min.absoluteValue
+        return if (sum >= 0) {
+            min.absoluteValue
         } else {
-            return max
+            max
         }
     }
 

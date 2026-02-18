@@ -1,6 +1,6 @@
 import java.util.UUID
 
-class Person (var name: String) { //todo: Private constructor + Factory method in Registry
+class Person (var name: String) {
     val id: UUID = UUID.randomUUID()
 
     override fun toString(): String {

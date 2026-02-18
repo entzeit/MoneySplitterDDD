@@ -1,1 +1,0 @@
-* add constrainst for transactions e.g. A doesn't want to send money to C but to B
