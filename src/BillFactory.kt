@@ -1,0 +1,33 @@
+import java.io.IOException
+import kotlin.text.split
+
+class BillFactory(private val registry: PersonRegistry) {
+    fun fromFile(fileName: String): List<Bill> {
+        val bills = try {
+            java.io.File(fileName).readLines().map { parse(it) }
+        } catch (e: IOException) {
+            println("Failed to read file: ${e.message}")
+            emptyList()
+        }
+        return bills
+    }
+
+    private fun parse(input: String): Bill {
+        val parts = input.split(" ")
+        require(parts.size >= 3) { "Invalid line format: $input" }
+        val payer = registry.addPerson(Person(parts[0]))
+        val amount = parts[1].toCents()
+        val debtors = parts[2].split(",").map { name -> registry.addPerson(Person(name.trim())) }
+        return Bill(payer, amount, debtors)
+    }
+
+    private fun String.toCents(): Int {
+        val (euros, centsPart) = this.split(",").let { it[0] to it.getOrNull(1) }
+        val cents = when {
+            centsPart == null -> 0
+            centsPart.length == 1 -> centsPart.toInt() * 10
+            else -> centsPart.toInt()
+        }
+        return euros.toInt() * 100 + cents
+    }
+}
