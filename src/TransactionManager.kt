@@ -14,7 +14,7 @@ class TransactionManager(val balanceManager: BalanceManager) {
         }
     }
 
-    private fun calculateTransactionAmount(min: Int, max: Int): Int {
+    private fun calculateTransactionAmount(min: Long, max: Long): Long {
         val sum = min + max
         return if (sum >= 0) {
             min.absoluteValue
@@ -26,12 +26,12 @@ class TransactionManager(val balanceManager: BalanceManager) {
     private fun updateBalance(transaction: Transaction) {
         val from = balanceManager.balances.find { it.person == transaction.from }!!
         from.amount += transaction.amount
-        if (from.amount == 0) {
+        if (from.amount == 0.toLong()) {
             balanceManager.balances.remove(from)
         }
         val to = balanceManager.balances.find { it.person == transaction.to }!!
         to.amount -= transaction.amount
-        if (to.amount == 0) {
+        if (to.amount == 0.toLong()) {
             balanceManager.balances.remove(to)
         }
     }
@@ -41,9 +41,9 @@ class TransactionManager(val balanceManager: BalanceManager) {
             "${transaction.from} -> ${transaction.to}: ${toEuro(transaction.amount)}"
         }
 
-    private fun toEuro(amount: Int): String {
-        val euro: Int = amount / 100
-        val cents: Int = amount - euro * 100
+    private fun toEuro(amount: Long): String {
+        val euro: Long = amount / 100
+        val cents: Long = amount - euro * 100
         var centString = ""
         if (cents < 10) {
             centString = "0"

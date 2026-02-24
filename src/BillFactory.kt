@@ -22,13 +22,13 @@ class BillFactory(private val registry: PersonRegistry) {
         return Bill(payer, amount, debtors)
     }
 
-    private fun String.toCents(): Int {
+    private fun String.toCents(): Long {
         val (euros, centsPart) = this.split(",").let { it[0] to it.getOrNull(1) }
         val cents = when {
             centsPart == null -> 0
-            centsPart.length == 1 -> centsPart.toInt() * 10
-            else -> centsPart.toInt()
+            centsPart.length == 1 -> centsPart.toLong() * 10
+            else -> centsPart.toLong()
         }
-        return euros.toInt() * 100 + cents
+        return euros.toLong() * 100 + cents
     }
 }
