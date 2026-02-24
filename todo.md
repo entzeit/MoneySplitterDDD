@@ -4,7 +4,6 @@
   /*
   Why is a map faster? In the Set I check for the person id and in the Map I check for hashcode.
   */ + reduce. 0 default value not necessary?
-* do split randomly so it is fair
 * rethink Person. Person has a Balance and Debts?
 * DDD: create ValueObjects e.g., for person.name for validation and sanitization with regex in constructor to replace general regex
     and handle validation error properly for production application
