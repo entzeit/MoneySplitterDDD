@@ -4,9 +4,8 @@ class TransactionManager(val balanceManager: BalanceManager) {
     var transactions = mutableListOf<Transaction>()
 
     fun calculateTransactions() {
-        while (!balanceManager.balances.isEmpty()) {
-            val min: Balance = balanceManager.balances.minBy { it.amount }
-            val max: Balance = balanceManager.balances.maxBy { it.amount }
+        while (balanceManager.balances.isNotEmpty()) {
+            val (min, max) = balanceManager.balances.values.let { it.minByOrNull { b -> b.amount }!! to it.maxByOrNull { b -> b.amount }!! }
             val amount = calculateTransactionAmount(min.amount, max.amount)
             val transaction = Transaction(min.person, max.person, amount)
             transactions.add(transaction)
@@ -24,15 +23,15 @@ class TransactionManager(val balanceManager: BalanceManager) {
     }
 
     private fun updateBalance(transaction: Transaction) {
-        val from = balanceManager.balances.find { it.person == transaction.from }!!
+        val from = balanceManager.balances[transaction.from]!!
         from.amount += transaction.amount
         if (from.amount == 0.toLong()) {
-            balanceManager.balances.remove(from)
+            balanceManager.balances.remove(from.person)
         }
-        val to = balanceManager.balances.find { it.person == transaction.to }!!
+        val to = balanceManager.balances[transaction.to]!!
         to.amount -= transaction.amount
         if (to.amount == 0.toLong()) {
-            balanceManager.balances.remove(to)
+            balanceManager.balances.remove(to.person)
         }
     }
 
