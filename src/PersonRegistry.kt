@@ -6,4 +6,6 @@ class PersonRegistry {
         return if (existing != null) existing
         else { peopleSet.add(person); person }
     }
+
+    fun findPersonByName(name: String): Person? = peopleSet.find { it.name.equals(name, true) }
 }

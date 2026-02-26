@@ -7,6 +7,6 @@ class Person (var name: String) {
         return name
     }
 
-    override fun equals(other: Any?) = other is Person && other.name == name
+    override fun equals(other: Any?) = other is Person && other.id == id
     override fun hashCode() = id.hashCode()
 }

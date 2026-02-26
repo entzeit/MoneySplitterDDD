@@ -16,9 +16,11 @@ class BillFactory(private val registry: PersonRegistry) {
         val regex = Regex("""^\p{L}+ \d+,\d{2} \p{L}+(,\p{L}+)*\s*$""")
         require(regex.matches(input)) { "Invalid line format: $input" }
         val parts = input.split(" ")
-        val payer = registry.addPerson(Person(parts[0]))
+        val payer = registry.findPersonByName(parts[0]) ?: registry.addPerson(Person(parts[0]))
         val amount = parts[1].toCents()
-        val debtors = parts[2].split(",").map { name -> registry.addPerson(Person(name.trim())) }
+        val debtors = parts[2].split(",").map { name ->
+            registry.findPersonByName(name) ?: registry.addPerson(Person(name.trim()))
+        }
         return Bill(payer, amount, debtors)
     }
 
