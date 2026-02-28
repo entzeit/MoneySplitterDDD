@@ -18,10 +18,10 @@ class BillFactory(private val registry: PersonRegistry) {
         val parts = input.split(" ")
         val payer = registry.findPersonByName(parts[0]) ?: registry.addPerson(Person(parts[0]))
         val amount = parts[1].toCents()
-        val debtors = parts[2].split(",").map { name ->
+        val debtorsList = parts[2].split(",").map { name ->
             registry.findPersonByName(name) ?: registry.addPerson(Person(name.trim()))
         }
-        return Bill(payer, amount, debtors)
+        return Bill(payer, amount, Debtors.of(debtorsList))
     }
 
     private fun String.toCents(): Long {

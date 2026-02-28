@@ -8,7 +8,7 @@ class BalanceManager {
             val payerBalance = balances.getOrPut(bill.payer, { Balance(bill.payer, 0) })
             payerBalance.amount += bill.amount
 
-            val debtPortion = bill.amount / bill.debtors.size
+            val debtPortion = bill.amount / bill.debtors.asList().size
             assert((bill.amount % bill.debtors.size) <= Int.MAX_VALUE)
             val remainder = (bill.amount % bill.debtors.size).toInt()
 
