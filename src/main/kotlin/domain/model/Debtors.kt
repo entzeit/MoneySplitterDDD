@@ -1,9 +1,11 @@
+package main.kotlin.domain.model
+
 class Debtors private constructor(
     private val people: List<Person>
 ) {
     init {
         // Invariant enforcement (DDD: ValueObject must always be valid)
-        require(this.people.isNotEmpty()) { "Debtors cannot be empty." }
+        require(this.people.isNotEmpty()) { "main.kotlin.interface.cli.main.kotlin.domain.model.Debtors cannot be empty." }
     }
 
     val size: Int
@@ -11,9 +13,9 @@ class Debtors private constructor(
 
     /**
      * Why .toList()?
-     * Defensive copy to ensure the Debtors object owns its state. Debtors owns its list now.
+     * Defensive copy to ensure the main.kotlin.interface.cli.main.kotlin.domain.model.Debtors object owns its state. main.kotlin.interface.cli.main.kotlin.domain.model.Debtors owns its list now.
      *
-     * Why isn't List<Person> not preventing from constructing with a mutable list?
+     * Why isn't List<main.kotlin.interface.cli.main.kotlin.domain.model.Person> not preventing from constructing with a mutable list?
      * The type readOnly only exposes read-only methods.
      * But the underlying object is still mutable.
      * If someone else still has a reference to the original mutable list, they can mutate it.
@@ -32,7 +34,7 @@ class Debtors private constructor(
     fun forEach(action: (Person) -> Unit) = people.forEach(action)
 
     companion object {
-        /** Factory method to create Debtors with a defensive copy */
+        /** Factory method to create main.kotlin.interface.cli.main.kotlin.domain.model.Debtors with a defensive copy */
         fun of(people: List<Person>): Debtors {
             return Debtors(people.toList())
         }
@@ -52,7 +54,7 @@ class Debtors private constructor(
 /**
  * Model the Concept, Not Just the Constraint
  * ✔ If the rule is simple and local
- * Keep require(debtors.isNotEmpty()) inside Bill.
+ * Keep require(debtors.isNotEmpty()) inside main.kotlin.interface.cli.main.kotlin.domain.model.Bill.
  * ✔ If the concept has behavior
  * Create a Value Object.
  * Example:
@@ -61,7 +63,7 @@ class Debtors private constructor(
  * Remove debtor
  * Add debtor
  * Equal shares vs weighted shares
- * Then Debtors absolutely deserves to be a Value Object.
+ * Then main.kotlin.interface.cli.main.kotlin.domain.model.Debtors absolutely deserves to be a Value Object.
  *
  * Why no data class:
  * no copy(), no wrong equals() or hashCode()

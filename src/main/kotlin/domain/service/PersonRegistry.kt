@@ -1,3 +1,7 @@
+package main.kotlin.domain.service
+
+import main.kotlin.domain.model.Person
+
 class PersonRegistry {
     private val peopleSet = mutableSetOf<Person>()
 

@@ -1,10 +1,16 @@
+package main.kotlin.domain.service
+
+import main.kotlin.domain.model.Bill
+import main.kotlin.domain.model.Debtors
+import main.kotlin.domain.model.Person
+import java.io.File
 import java.io.IOException
 import kotlin.text.split
 
 class BillFactory(private val registry: PersonRegistry) {
     fun fromFile(fileName: String): List<Bill> {
         val bills = try {
-            java.io.File(fileName).readLines().map { parse(it) }
+            File(fileName).readLines().map { parse(it) }
         } catch (e: IOException) {
             println("Failed to read file: ${e.message}")
             emptyList()

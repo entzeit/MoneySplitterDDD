@@ -1,3 +1,6 @@
+package main.kotlin.domain.service
+
+import main.kotlin.domain.model.Transaction
 import kotlin.math.absoluteValue
 
 class TransactionManager(val balanceManager: BalanceManager) {

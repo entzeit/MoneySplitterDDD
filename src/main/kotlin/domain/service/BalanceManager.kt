@@ -1,3 +1,8 @@
+package main.kotlin.domain.service
+
+import main.kotlin.domain.model.Balance
+import main.kotlin.domain.model.Bill
+import main.kotlin.domain.model.Person
 import kotlin.random.Random
 
 class BalanceManager {

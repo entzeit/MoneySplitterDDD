@@ -1,3 +1,5 @@
+package main.kotlin.domain.model
+
 import java.util.UUID
 
 class Bill (
@@ -14,6 +16,6 @@ class Bill (
 
 
     override fun toString(): String {
-        return "Payer: $payer\tAmount: $amount\tDebtors: $debtors"
+        return "Payer: $payer\tAmount: $amount\tmain.kotlin.interface.cli.main.kotlin.domain.model.Debtors: $debtors"
     }
 }
