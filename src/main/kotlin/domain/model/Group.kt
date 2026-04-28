@@ -1,6 +1,7 @@
 package main.kotlin.domain.model
 
-import main.kotlin.domain.service.BalanceManager
+import main.kotlin.application.usecase.CalculateBalancesUseCase
+import main.kotlin.domain.service.BalanceCalculator
 import main.kotlin.domain.service.BillFactory
 import main.kotlin.domain.service.BillManager
 import main.kotlin.domain.service.PersonRegistry
@@ -17,9 +18,10 @@ class Group(args: Array<String>) { //todo: more constraint
         val personRegistry = PersonRegistry()
         val billFactory = BillFactory(personRegistry)
         val billManager = BillManager(billFactory.fromFile(args[0]))
-        val balanceManager = BalanceManager()
-        balanceManager.calculateBalances(billManager.bills)
-        val transactionManager = TransactionManager(balanceManager)
+        val calculator = BalanceCalculator()
+        val calculateBalancesUseCase = CalculateBalancesUseCase(calculator)
+        val balances = calculateBalancesUseCase.execute(billManager.bills)
+        val transactionManager = TransactionManager(balances)
         transactionManager.calculateTransactions()
         println(transactionManager)
     }
