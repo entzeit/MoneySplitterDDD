@@ -21,12 +21,13 @@ class SplitterApp {
             return
         }
 
-        //single source of truth (append-only)
+        //todo: single source of truth (append-only) -> balances derived from this
         val bills = ImportBillsUseCase(
             BillParser(),
             personRepository
         ).execute(lines)
 
+        //todo: make balances this: Map<PersonId, Long>
         val balances = CalculateBalancesUseCase(
             BalanceCalculator()
         ).execute(bills)

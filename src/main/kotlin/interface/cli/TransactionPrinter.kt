@@ -6,13 +6,7 @@ class TransactionPrinter {
 
     fun print(transactions: List<Transaction>) {
         transactions.forEach {
-            println("${it.from} -> ${it.to}: ${toEuro(it.amount)}")
+            println("${it.from} -> ${it.to}: ${it.amount.formatToEuro()}")
         }
-    }
-
-    private fun toEuro(amount: Long): String {
-        val euro = amount / 100
-        val cents = (amount % 100).let { if (it < 10) "0$it" else "$it" }
-        return "$euro,$cents"
     }
 }
