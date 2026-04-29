@@ -5,7 +5,6 @@ import main.kotlin.application.usecase.AddPersonUseCase
 import main.kotlin.application.usecase.CalculateBalancesUseCase
 import main.kotlin.application.usecase.ImportBillsUseCase
 import main.kotlin.domain.service.BalanceCalculator
-import main.kotlin.domain.service.BillManager
 import main.kotlin.domain.service.TransactionManager
 import main.kotlin.infrastructure.InMemoryPersonRepository
 import main.kotlin.`interface`.cli.BillFileReader
@@ -27,10 +26,9 @@ class Group(args: Array<String>) { //todo: more constraint
         val importBillsUseCase =
             ImportBillsUseCase(BillParser(), personRepository)
         val bills = importBillsUseCase.execute(lines)
-        val billManager = BillManager(bills)
         val calculator = BalanceCalculator()
         val calculateBalancesUseCase = CalculateBalancesUseCase(calculator)
-        val balances = calculateBalancesUseCase.execute(billManager.bills)
+        val balances = calculateBalancesUseCase.execute(bills)
         val transactionManager = TransactionManager(balances)
         transactionManager.calculateTransactions()
         println(transactionManager)
