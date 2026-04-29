@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 class DebtorsTest {
 
     @Test
+    //todo: explain and understand mutable
     fun `debtors should protect internal state from external list mutation`() {
         val alice = Person("Alice")
         val bob = Person("Bob")
@@ -18,7 +19,7 @@ class DebtorsTest {
         // Mutate original list
         mutableList.clear()
 
-        // The internal main.kotlin.interface.cli.main.kotlin.domain.model.Debtors state is still intact
+        // The internal Debtors state is still intact
         val result = debtors.asList()
         Assertions.assertEquals(2, result.size)
         Assertions.assertTrue(result.contains(alice))
