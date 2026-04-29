@@ -1,7 +1,9 @@
 package test.kotlin.domain.model
 
 import main.kotlin.domain.model.Debtors
-import main.kotlin.domain.model.Person
+import main.kotlin.domain.model.person.Person
+import main.kotlin.domain.model.vo.PersonId
+import main.kotlin.domain.model.vo.PersonName
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
@@ -10,8 +12,8 @@ class DebtorsTest {
     @Test
     //todo: explain and understand mutable
     fun `debtors should protect internal state from external list mutation`() {
-        val alice = Person("Alice")
-        val bob = Person("Bob")
+        val alice = Person(PersonId.new(), PersonName("Alice"))
+        val bob = Person(PersonId.new(), PersonName("Bob"))
         val mutableList = mutableListOf(alice, bob)
 
         val debtors = Debtors.Companion.of(mutableList)

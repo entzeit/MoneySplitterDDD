@@ -1,6 +1,7 @@
 package main.kotlin.infrastructure
 
-import main.kotlin.domain.model.Person
+import main.kotlin.domain.model.person.Person
+import main.kotlin.domain.model.vo.PersonName
 import main.kotlin.domain.repository.PersonRepository
 
 class InMemoryPersonRepository : PersonRepository {
@@ -12,5 +13,5 @@ class InMemoryPersonRepository : PersonRepository {
         else { peopleSet.add(person); person }
     }
 
-    override fun findByName(name: String): Person? = peopleSet.find { it.name.equals(name, true) }
+    override fun findByName(name: PersonName): Person? = peopleSet.find { it.name() == name }
 }

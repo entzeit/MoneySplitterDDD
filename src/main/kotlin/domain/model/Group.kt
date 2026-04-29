@@ -16,10 +16,10 @@ class Group(args: Array<String>) { //todo: more constraint
  * class main.kotlin.interface.cli.main.kotlin.domain.model.Group(
  *     val id: GroupId
  * ) {
- *     private val members = mutableMapOf<PersonId, main.kotlin.interface.cli.main.kotlin.domain.model.Person>()
+ *     private val members = mutableMapOf<PersonId, main.kotlin.interface.cli.main.kotlin.domain.model.Person.Person>()
  *     private val bills = mutableListOf<main.kotlin.interface.cli.main.kotlin.domain.model.Bill>()
  *
- *     fun addMember(person: main.kotlin.interface.cli.main.kotlin.domain.model.Person) { ... }
+ *     fun addMember(person: main.kotlin.interface.cli.main.kotlin.domain.model.Person.Person) { ... }
  *
  *     fun addBill(bill: main.kotlin.interface.cli.main.kotlin.domain.model.Bill) { ... }
  *

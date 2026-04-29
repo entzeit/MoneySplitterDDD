@@ -21,6 +21,7 @@ class SplitterApp {
             return
         }
 
+        //single source of truth (append-only)
         val bills = ImportBillsUseCase(
             BillParser(),
             personRepository

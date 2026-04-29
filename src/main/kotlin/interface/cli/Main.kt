@@ -7,5 +7,6 @@ fun main(args: Array<String>) {
         println("Usage: java Splitter <file.txt>")
         return
     }
+    //"Uncontrolled user input is passed to Path Traversal sink" -> okay for local CLI tool
     SplitterApp().run(args[0])
 }

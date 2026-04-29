@@ -1,7 +1,7 @@
 package main.kotlin.domain.service
 
 import main.kotlin.domain.model.Balance
-import main.kotlin.domain.model.Person
+import main.kotlin.domain.model.person.Person
 import main.kotlin.domain.model.Transaction
 
 class TransactionCalculator {

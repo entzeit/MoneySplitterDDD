@@ -1,8 +1,10 @@
 package main.kotlin.application.usecase
 
-import main.kotlin.domain.model.Bill
-import main.kotlin.domain.model.Person
 import main.kotlin.application.service.BillParser
+import main.kotlin.domain.model.Bill
+import main.kotlin.domain.model.person.Person
+import main.kotlin.domain.model.vo.PersonId
+import main.kotlin.domain.model.vo.PersonName
 import main.kotlin.domain.repository.PersonRepository
 
 class ImportBillsUseCase(
@@ -21,8 +23,8 @@ class ImportBillsUseCase(
         }
     }
 
-    private fun resolvePerson(name: String): Person {
+    private fun resolvePerson(name: PersonName): Person {
         return personRepository.findByName(name)
-            ?: Person(name).also { personRepository.save(it) }
+            ?: Person(PersonId.new(),name).also { personRepository.save(it) }
     }
 }

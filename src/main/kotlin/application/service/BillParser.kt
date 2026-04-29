@@ -1,5 +1,7 @@
 package main.kotlin.application.service
 
+import main.kotlin.domain.model.vo.PersonName
+
 class BillParser {
 
     private val regex = Regex("""^\p{L}+ \d+,\d{2} \p{L}+(,\p{L}+)*\s*$""")
@@ -9,9 +11,9 @@ class BillParser {
         val parts = line.split(" ")
 
         return ParsedBill(
-            payerName = parts[0],
+            payerName = PersonName(parts[0]),
             amount = parts[1].toCents(),
-            debtorNames = parts[2].split(",").map { it.trim() }
+            debtorNames = parts[2].split(",").map { PersonName(it.trim()) }
         )
     }
 
@@ -27,7 +29,7 @@ class BillParser {
 }
 
 data class ParsedBill( //clean, but not domain-safe
-    val payerName: String,
+    val payerName: PersonName,
     val amount: Long,
-    val debtorNames: List<String>
+    val debtorNames: List<PersonName>
 )

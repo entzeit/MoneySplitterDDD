@@ -1,6 +1,7 @@
 package main.kotlin.domain.model
 
-import java.util.UUID
+import main.kotlin.domain.model.person.Person
+import java.util.*
 
 class Bill (
     val payer: Person,
