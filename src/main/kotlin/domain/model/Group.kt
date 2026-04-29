@@ -1,11 +1,14 @@
 package main.kotlin.domain.model
 
+import main.kotlin.application.service.BillParser
+import main.kotlin.application.usecase.AddPersonUseCase
 import main.kotlin.application.usecase.CalculateBalancesUseCase
+import main.kotlin.application.usecase.ImportBillsUseCase
 import main.kotlin.domain.service.BalanceCalculator
-import main.kotlin.domain.service.BillFactory
 import main.kotlin.domain.service.BillManager
-import main.kotlin.domain.service.PersonRegistry
 import main.kotlin.domain.service.TransactionManager
+import main.kotlin.infrastructure.InMemoryPersonRepository
+import main.kotlin.`interface`.cli.BillFileReader
 import java.util.UUID
 
 /**
@@ -15,9 +18,16 @@ class Group(args: Array<String>) { //todo: more constraint
     val id: UUID = UUID.randomUUID()
 
     init {
-        val personRegistry = PersonRegistry()
-        val billFactory = BillFactory(personRegistry)
-        val billManager = BillManager(billFactory.fromFile(args[0]))
+        val personRepository = InMemoryPersonRepository()
+        val addPersonUseCase = AddPersonUseCase(personRepository)
+        val lines = BillFileReader().read(args[0]).getOrElse {
+            println("Failed to read file: ${it.message}")
+            emptyList() //todo: return?
+        }
+        val importBillsUseCase =
+            ImportBillsUseCase(BillParser(), personRepository)
+        val bills = importBillsUseCase.execute(lines)
+        val billManager = BillManager(bills)
         val calculator = BalanceCalculator()
         val calculateBalancesUseCase = CalculateBalancesUseCase(calculator)
         val balances = calculateBalancesUseCase.execute(billManager.bills)

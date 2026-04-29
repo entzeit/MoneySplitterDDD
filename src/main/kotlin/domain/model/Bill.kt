@@ -13,7 +13,16 @@ class Bill (
 ) {
     val id: UUID = UUID.randomUUID() //DDD: important because pointers in databases
 
-
+    companion object {
+        fun create(
+            payer: Person,
+            amount: Long,
+            debtors: List<Person>
+        ): Bill {
+            require(debtors.isNotEmpty())
+            return Bill(payer, amount, Debtors.of(debtors))
+        }
+    }
 
     override fun toString(): String {
         return "Payer: $payer\tAmount: $amount\tmain.kotlin.interface.cli.main.kotlin.domain.model.Debtors: $debtors"
