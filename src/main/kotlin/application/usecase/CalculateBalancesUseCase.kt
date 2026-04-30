@@ -5,7 +5,7 @@ import main.kotlin.domain.model.Bill
 import main.kotlin.domain.service.BalanceCalculator
 
 class CalculateBalancesUseCase(
-    private val calculator: BalanceCalculator
+    private val calculator: BalanceCalculator //manual dependency injection
 ) {
     fun execute(bills: List<Bill>): Balances {
         return calculator.calculate(bills)

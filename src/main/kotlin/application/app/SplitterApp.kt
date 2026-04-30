@@ -15,20 +15,17 @@ class SplitterApp {
 
     fun run(fileName: String) {
         val personRepository = InMemoryPersonRepository()
-        //val addPersonUseCase = AddPersonUseCase(personRepository)
 
         val lines = BillFileReader().read(fileName).getOrElse {
             println("Failed to read file: ${it.message}")
             return
         }
 
-        //todo: single source of truth (append-only) -> balances derived from this
         val bills = ImportBillsUseCase(
             BillParser(),
             personRepository
         ).execute(lines)
 
-        //todo: make balances this: Map<PersonId, Long>
         val balances = CalculateBalancesUseCase(
             BalanceCalculator()
         ).execute(bills)

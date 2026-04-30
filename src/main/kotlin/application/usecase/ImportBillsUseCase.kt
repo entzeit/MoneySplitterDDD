@@ -8,8 +8,8 @@ import main.kotlin.domain.model.vo.PersonName
 import main.kotlin.domain.repository.PersonRepository
 
 class ImportBillsUseCase(
-    private val parser: BillParser,
-    private val personRepository: PersonRepository
+    private val parser: BillParser, //manual dependency injection
+    private val personRepository: PersonRepository //manual dependency injection
 ) {
 
     fun execute(lines: List<String>): List<Bill> {
