@@ -1,7 +1,9 @@
 package main.kotlin.application.service
 
+import main.kotlin.application.dto.ParsedBill
 import main.kotlin.domain.model.vo.PersonName
 
+//DTO: Data Transfer Object
 class BillParser {
 
     private val regex = Regex("""^\p{L}+ \d+,\d{2} \p{L}+(,\p{L}+)*\s*$""")
@@ -27,9 +29,3 @@ class BillParser {
         return euros.toLong() * 100 + cents
     }
 }
-
-data class ParsedBill( //clean, but not domain-safe
-    val payerName: PersonName,
-    val amount: Long,
-    val debtorNames: List<PersonName>
-)
