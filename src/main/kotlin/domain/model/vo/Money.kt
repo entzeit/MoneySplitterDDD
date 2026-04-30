@@ -1,6 +1,6 @@
 package main.kotlin.domain.model.vo
 
-data class Money (
+data class Money ( //todo: private constructor?
     val cents: Long,
     //todo: val currency: Currency
 ) : Comparable<Money> {

@@ -1,20 +1,24 @@
 package main.kotlin.domain.service
 
-import main.kotlin.domain.model.Balance
 import main.kotlin.domain.model.Transaction
-import main.kotlin.domain.model.person.Person
 import main.kotlin.domain.model.vo.Money
+import main.kotlin.domain.model.vo.PersonId
 
 class TransactionCalculator {
 
-    fun calculate(balances: List<Balance>): List<Transaction> {
-        val mutable = balances.associateBy { it.person }
-            .mapValues { it.value.amount }
+    fun calculate(balances: Map<PersonId, Money>): List<Transaction> { //todo:
+        // Work on a mutable copy (pure from outside perspective) todo: why work on mutable copy?
+        val mutable = balances
+            .filterValues { it.cents != 0L } // ignore zero balances
             .toMutableMap()
         val result = mutableListOf<Transaction>()
         while (mutable.isNotEmpty()) {
             val min = mutable.minByOrNull { it.value.cents }!!
             val max = mutable.maxByOrNull { it.value.cents }!!
+
+            // Stop if all are settled
+            if (min.value.cents >= 0) break //todo: not really necessary because it always adds up
+
             val amount = calculateSettlement(min.value, max.value)
             result.add(
                 Transaction(
@@ -41,9 +45,9 @@ class TransactionCalculator {
     }
 
     private fun update(
-        balances: MutableMap<Person, Money>,
-        from: Person,
-        to: Person,
+        balances: MutableMap<PersonId, Money>,
+        from: PersonId,
+        to: PersonId,
         amount: Money
     ) {
         balances[from] = balances[from]!! + amount

@@ -6,7 +6,7 @@ import java.util.*
 class Bill (
     val payer: Person,
     //todo: >0
-    val amount: Long,          // in cents
+    val amount: Long,          // in cents //todo: money
     //DDD: debtors should never be empty -> making illegal states unrepresentable
     //DDD: Model the Concept, Not Just the Constraint -> ValueObject for things that have constraints
     //todo: valueObject

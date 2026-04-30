@@ -1,9 +1,9 @@
 package main.kotlin.domain.model
 
-import main.kotlin.domain.model.person.Person
 import main.kotlin.domain.model.vo.Money
-import java.util.UUID
+import main.kotlin.domain.model.vo.PersonId
+import java.util.*
 
-class Transaction(val from: Person, val to: Person, val amount: Money) {
+class Transaction(val from: PersonId, val to: PersonId, val amount: Money) {
     val id: UUID = UUID.randomUUID()
 }

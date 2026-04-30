@@ -1,40 +1,44 @@
 package main.kotlin.domain.service
 
-import main.kotlin.domain.model.Balance
 import main.kotlin.domain.model.Bill
-import main.kotlin.domain.model.findByPerson
 import main.kotlin.domain.model.vo.Money
+import main.kotlin.domain.model.vo.PersonId
 import kotlin.random.Random
 
 class BalanceCalculator {
-    fun applyBill(
-        bill: Bill,
-        balances: MutableList<Balance>
-    ) {
-        val payerBalance = balances.findByPerson(bill.payer)
-            ?: Balance(bill.payer).also {
-                balances.add(it)
+    fun calculate(bills: List<Bill>): Map<PersonId, Money> {
+        val balances = mutableMapOf<PersonId, Money>()
+        bills.forEach { bill ->
+            val payerId = bill.payer.id
+            val payerAmount = Money.ofCents(bill.amount)
+            balances[payerId] = balances.getOrDefault(payerId, Money(0)) +
+                    payerAmount //todo: understand or other way
+
+            val share = Money.ofCents(bill.amount / bill.debtors.size)
+            val remainder = Money.ofCents(bill.amount % bill.debtors.size)
+            val debtorIds = bill.debtors.map { it.id }
+            debtorIds.forEach { debtorId ->
+                balances[debtorId] =
+                    balances.getOrDefault(debtorId, Money(0)) -
+                            share
             }
-        payerBalance.amount += Money.ofCents(bill.amount)
 
-        val debtPortion = bill.amount / bill.debtors.size
-        val remainder = (bill.amount % bill.debtors.size).toInt()
-
-        val debtorsList = bill.debtors.map { person ->
-            balances.findByPerson(person)
-                ?: Balance(person).also { balances.add(it) }
+            applyRemainder(debtorIds, remainder, balances)
         }
-        debtorsList.forEach { it.amount -= Money.ofCents(debtPortion) }
-        applyRemainder(debtorsList, remainder)
+        return balances
     }
 
     private fun applyRemainder(
-        debtors: List<Balance>,
-        remainder: Int
+        debtors: List<PersonId>,
+        remainder: Money,
+        balances: MutableMap<PersonId, Money>
     ) {
         val random = Random(0L)
         debtors.shuffled(random)
-            .take(remainder)
-            .forEach { it.amount -= Money(1) }
+            .take(remainder.cents.toInt())
+            .forEach { debtorId ->
+                balances[debtorId] =
+                    balances.getOrDefault(debtorId, Money(0)) - Money(1) //todo: what if I am sure that it exists?
+            }
     }
 }

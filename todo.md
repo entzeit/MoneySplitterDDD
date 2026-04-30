@@ -8,11 +8,9 @@ data class Balance(var amount: Long = 0)
 */
 
 * Balance value object? -> Aggregate?
-  * derived value from bills. no sync issues. but store cached and update only with the old balance value. 
+  * derived value from bills. no sync issues. 
   * Default 0 or directly derived?
 * Person? rethink it. It has a Balance?
-* amount: Money
-* name: Name
 * DDD: create ValueObjects e.g., for person.name for validation and sanitization with regex in constructor to replace general regex
     and handle validation error properly for production application
 * dependancy injection
@@ -21,6 +19,23 @@ data class Balance(var amount: Long = 0)
 * Two people with same name can exist? How handle that? Person has id?
 
 late todo:
+* Caching: store cached and update only with the old balance value.
+  Clean architecture way (best practice)
+
+Move caching OUT of domain:
+
+class CachedBalanceService(
+private val calculator: BalanceCalculator
+)
+
+NOT inside:
+
+Person
+Bill
+domain model
+
+👉 caching is infrastructure concern
+
 * todo: add multiple Groups
 * add constraint for transactions e.g. A doesn't want to send money to C but to B
 
@@ -35,6 +50,13 @@ Value Object:
 ChatGPT Prompt:
 I am a professional developer. 
 I need some help converting a simple Kotlin project that has no architecture to Domain Driven Design and I need some advice for this.
+
+
+| Concept | Responsibility  |
+| ------- | --------------- |
+| Person  | identity        |
+| Bill    | financial facts |
+| Balance | computed result |
 
 
 

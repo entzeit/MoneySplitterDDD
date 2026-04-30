@@ -36,6 +36,6 @@ class SplitterApp {
             TransactionCalculator()
         ).execute(balances)
 
-        TransactionPrinter().print(transactions)
+        TransactionPrinter(personRepository).print(transactions)
     }
 }
