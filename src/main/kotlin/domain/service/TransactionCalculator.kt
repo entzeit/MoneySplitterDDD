@@ -1,14 +1,15 @@
 package main.kotlin.domain.service
 
+import main.kotlin.domain.model.Balances
 import main.kotlin.domain.model.Transaction
 import main.kotlin.domain.model.vo.Money
 import main.kotlin.domain.model.vo.PersonId
 
 class TransactionCalculator {
 
-    fun calculate(balances: Map<PersonId, Money>): List<Transaction> { //todo:
+    fun calculate(balances: Balances): List<Transaction> { //todo:
         // Work on a mutable copy (pure from outside perspective) todo: why work on mutable copy?
-        val mutable = balances
+        val mutable = balances.toMap()
             .filterValues { it.cents != 0L } // ignore zero balances
             .toMutableMap()
         val result = mutableListOf<Transaction>()

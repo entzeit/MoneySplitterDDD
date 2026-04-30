@@ -5,5 +5,5 @@ import main.kotlin.domain.model.vo.PersonId
 import java.util.*
 
 class Transaction(val from: PersonId, val to: PersonId, val amount: Money) {
-    val id: UUID = UUID.randomUUID()
+    val id: UUID = UUID.randomUUID() //todo: TransactionID
 }

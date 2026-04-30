@@ -5,6 +5,8 @@ data class Money ( //todo: private constructor?
     //todo: val currency: Currency
 ) : Comparable<Money> {
     companion object {
+        val ZERO: Money = Money(0L)
+
         fun ofCents(cents: Long) =
             Money(cents)
     }
