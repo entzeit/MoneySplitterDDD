@@ -1,5 +1,6 @@
 package main.kotlin.application.app
 
+import main.kotlin.application.mapper.TransactionViewMapper
 import main.kotlin.application.service.BillParser
 import main.kotlin.application.usecase.CalculateBalancesUseCase
 import main.kotlin.application.usecase.CalculateTransactionsUseCase
@@ -36,6 +37,7 @@ class SplitterApp {
             TransactionCalculator()
         ).execute(balances)
 
-        TransactionPrinter(personRepository).print(transactions)
+        val transactionViews = TransactionViewMapper(personRepository).map(transactions)
+        TransactionPrinter().print(transactionViews)
     }
 }

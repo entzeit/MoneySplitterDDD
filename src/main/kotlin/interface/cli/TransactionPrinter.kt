@@ -1,20 +1,11 @@
 package main.kotlin.`interface`.cli
 
-import main.kotlin.domain.model.Transaction
-import main.kotlin.domain.repository.PersonRepository
+import main.kotlin.`interface`.cli.view.TransactionView
 
-class TransactionPrinter(
-    private val personRepository: PersonRepository
-) {
-    fun print(transactions: List<Transaction>) {
+class TransactionPrinter {
+    fun print(transactions: List<TransactionView>) {
         transactions.forEach {
-            val fromName = personRepository.findById(it.from)?.name()
-                ?: "Unknown(${it.from})"
-
-            val toName = personRepository.findById(it.to)?.name()
-                ?: "Unknown(${it.to})"
-
-            println("$fromName -> $toName: ${it.amount.formatToEuro()}")
+            println("${it.fromName} -> ${it.toName}: ${it.amount}")
         }
     }
 }

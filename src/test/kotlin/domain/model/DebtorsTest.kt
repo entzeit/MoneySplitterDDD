@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test
 class DebtorsTest {
 
     @Test
-    //todo: explain and understand mutable
     fun `debtors should protect internal state from external list mutation`() {
         val alice = Person(PersonId.new(), PersonName("Alice"))
         val bob = Person(PersonId.new(), PersonName("Bob"))
