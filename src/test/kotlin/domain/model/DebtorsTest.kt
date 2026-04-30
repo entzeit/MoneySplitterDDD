@@ -15,7 +15,7 @@ class DebtorsTest {
         val bob = Person(PersonId.new(), PersonName("Bob"))
         val mutableList = mutableListOf(alice, bob)
 
-        val debtors = Debtors.Companion.of(mutableList)
+        val debtors = Debtors.of(mutableList)
 
         // Mutate original list
         mutableList.clear()

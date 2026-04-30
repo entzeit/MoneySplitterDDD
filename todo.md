@@ -1,8 +1,3 @@
-* dependency injection
-* Two people with same name can exist? How handle that? Person has id?
-
-
-todo:
 * add multiple Groups
 * implement multiple people with same name 
   * PersonId = identity, PersonName = attribute (not uniqueness constraint) 
@@ -15,7 +10,6 @@ todo:
     * structural Caching with BillVersioned?
     * CachedBalanceService -> Clean Architecture style
 * CSP problem: add constraint for transactions e.g. A doesn't want to send money to C but to B
-
 
 ChatGPT Prompt:
 I am a professional developer. 
