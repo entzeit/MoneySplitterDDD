@@ -4,6 +4,7 @@ import main.kotlin.domain.model.Balances
 import main.kotlin.domain.model.Transaction
 import main.kotlin.domain.model.vo.Money
 import main.kotlin.domain.model.vo.PersonId
+import main.kotlin.domain.model.vo.TransactionId
 
 class TransactionCalculator {
 
@@ -23,6 +24,7 @@ class TransactionCalculator {
             val amount = calculateSettlement(min.value, max.value)
             result.add(
                 Transaction(
+                    id = TransactionId.new(),
                     from = min.key,
                     to = max.key,
                     amount = amount
