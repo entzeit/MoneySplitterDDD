@@ -1,5 +1,5 @@
 * dependency injection
-* DTOs: data class?
+* DTOs: data class
 * only reference with id? only with aggregate root? database?
 * 
 * Two people with same name can exist? How handle that? Person has id?

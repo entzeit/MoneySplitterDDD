@@ -11,9 +11,9 @@ class BillParser {
         val parts = line.split(" ")
 
         return ParsedBill(
-            payerName = PersonName.create(parts[0]),
+            payerName = PersonName.create(parts[0]).getOrThrow(),
             amount = parts[1].toCents(),
-            debtorNames = parts[2].split(",").map { PersonName.create(it) }
+            debtorNames = parts[2].split(",").map { PersonName.create(it).getOrThrow() }
         )
     }
 

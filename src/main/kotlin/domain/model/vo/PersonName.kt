@@ -13,9 +13,18 @@ value class PersonName(val value: String) {
     companion object {
         private val regex = Regex("""^\p{L}+( \p{L}+)*$""")
 
-        fun create(raw: String): PersonName {
+        fun create(raw: String): Result<PersonName> {
             val normalized = raw.trim().replace(Regex("\\s+"), " ")
-            return PersonName(normalized)
+            return when {
+                normalized.isBlank() ->
+                    Result.failure(IllegalArgumentException("Name cannot be blank"))
+                normalized.length > 100 ->
+                    Result.failure(IllegalArgumentException("Name is too long"))
+                !regex.matches(normalized) ->
+                    Result.failure(IllegalArgumentException("Invalid name format: $raw"))
+                else ->
+                    Result.success(PersonName(normalized))
+            }
         }
     }
 
