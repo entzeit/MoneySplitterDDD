@@ -1,6 +1,6 @@
-package main.kotlin.`interface`.cli
+package main.kotlin.presentation.cli
 
-import main.kotlin.`interface`.cli.view.TransactionView
+import main.kotlin.presentation.view.TransactionView
 
 class TransactionPrinter {
     fun print(transactions: List<TransactionView>) {

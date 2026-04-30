@@ -1,4 +1,4 @@
-package main.kotlin.domain.model.person
+package main.kotlin.domain.model
 
 import main.kotlin.domain.model.vo.PersonId
 import main.kotlin.domain.model.vo.PersonName

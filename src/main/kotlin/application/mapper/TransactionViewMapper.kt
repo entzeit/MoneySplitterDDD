@@ -2,7 +2,7 @@ package main.kotlin.application.mapper
 
 import main.kotlin.domain.model.Transaction
 import main.kotlin.domain.repository.PersonRepository
-import main.kotlin.`interface`.cli.view.TransactionView
+import main.kotlin.presentation.view.TransactionView
 import kotlin.collections.map
 
 class TransactionViewMapper(

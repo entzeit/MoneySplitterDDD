@@ -1,6 +1,5 @@
 package main.kotlin.domain.model
 
-import main.kotlin.domain.model.person.Person
 import java.util.*
 
 class Bill (

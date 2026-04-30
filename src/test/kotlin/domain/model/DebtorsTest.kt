@@ -1,7 +1,7 @@
 package test.kotlin.domain.model
 
 import main.kotlin.domain.model.Debtors
-import main.kotlin.domain.model.person.Person
+import main.kotlin.domain.model.Person
 import main.kotlin.domain.model.vo.PersonId
 import main.kotlin.domain.model.vo.PersonName
 import org.junit.jupiter.api.Assertions

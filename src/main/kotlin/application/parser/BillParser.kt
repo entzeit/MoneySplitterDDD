@@ -1,4 +1,4 @@
-package main.kotlin.application.service
+package main.kotlin.application.parser
 
 import main.kotlin.application.dto.ParsedBill
 import main.kotlin.domain.model.vo.PersonName

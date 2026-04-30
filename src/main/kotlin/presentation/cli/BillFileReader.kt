@@ -1,4 +1,4 @@
-package main.kotlin.`interface`.cli
+package main.kotlin.presentation.cli
 
 import java.io.File
 

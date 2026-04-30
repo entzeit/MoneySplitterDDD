@@ -1,4 +1,4 @@
-package main.kotlin.`interface`.cli.view
+package main.kotlin.presentation.view
 
 //Presentation DTO
 data class TransactionView(
