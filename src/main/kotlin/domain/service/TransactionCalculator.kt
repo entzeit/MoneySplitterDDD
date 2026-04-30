@@ -8,8 +8,8 @@ import main.kotlin.domain.model.vo.TransactionId
 
 class TransactionCalculator {
 
-    fun calculate(balances: Balances): List<Transaction> { //todo:
-        // Work on a mutable copy (pure from outside perspective) todo: why work on mutable copy?
+    fun calculate(balances: Balances): List<Transaction> {
+        // Work on a mutable copy (pure function from outside perspective)
         val mutable = balances.toMap()
             .filterValues { it.cents != 0L } // ignore zero balances
             .toMutableMap()
