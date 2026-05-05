@@ -1,6 +1,6 @@
 package main.kotlin
 
-import main.kotlin.application.mapper.TransactionViewMapper
+import main.kotlin.presentation.mapper.TransactionViewMapper
 import main.kotlin.application.parser.BillParser
 import main.kotlin.application.usecase.CalculateBalancesUseCase
 import main.kotlin.application.usecase.CalculateTransactionsUseCase

@@ -1,9 +1,8 @@
-package main.kotlin.application.mapper
+package main.kotlin.presentation.mapper
 
 import main.kotlin.domain.model.Transaction
 import main.kotlin.domain.repository.PersonRepository
 import main.kotlin.presentation.view.TransactionView
-import kotlin.collections.map
 
 class TransactionViewMapper(
     private val personRepository: PersonRepository
