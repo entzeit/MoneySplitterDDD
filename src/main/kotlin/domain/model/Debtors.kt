@@ -1,5 +1,6 @@
 package main.kotlin.domain.model
 
+//Value Object
 class Debtors private constructor(
     private val people: List<Person>
 ) {
@@ -20,6 +21,8 @@ class Debtors private constructor(
      * But the underlying object is still mutable.
      * If someone else still has a reference to the original mutable list, they can mutate it.
      * read-only interface ≠ immutability.
+     *
+     * It's a shallow copy and it prevents changing the original list's structure but it can change the referenced objects inside
      */
     fun asList(): List<Person> = people.toList()
 

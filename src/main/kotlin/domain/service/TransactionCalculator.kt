@@ -55,7 +55,7 @@ class TransactionCalculator {
     ) {
         balances[from] = balances[from]!! + amount
         balances[to] = balances[to]!! - amount
-        if (balances[from] == Money(0L)) balances.remove(from)
-        if (balances[to] == Money(0L)) balances.remove(to)
+        if (balances[from] == Money.ofCents(0L)) balances.remove(from)
+        if (balances[to] == Money.ofCents(0L)) balances.remove(to)
     }
 }

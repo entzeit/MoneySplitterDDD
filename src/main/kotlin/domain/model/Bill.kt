@@ -1,11 +1,12 @@
 package main.kotlin.domain.model
 
+import main.kotlin.domain.model.vo.Money
 import java.util.*
 
 class Bill (
     val payer: Person,
     //todo: >0
-    val amount: Long,          // in cents //todo: money
+    val amount: Money,
     //DDD: debtors should never be empty -> making illegal states unrepresentable
     //DDD: Model the Concept, Not Just the Constraint -> ValueObject for things that have constraints
     //todo: valueObject
@@ -20,7 +21,7 @@ class Bill (
             debtors: List<Person>
         ): Bill {
             require(debtors.isNotEmpty())
-            return Bill(payer, amount, Debtors.of(debtors))
+            return Bill(payer, Money.ofCents(amount), Debtors.of(debtors))
         }
     }
 

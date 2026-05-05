@@ -1,14 +1,14 @@
 package main.kotlin.domain.model.vo
 
-data class Money ( //todo: private constructor?
+class Money private constructor (
     val cents: Long,
     //todo: val currency: Currency
 ) : Comparable<Money> {
     companion object {
-        val ZERO: Money = Money(0L)
-
         fun ofCents(cents: Long) =
             Money(cents)
+
+        val ZERO: Money = Money(0L)
     }
 
     fun abs(): Money = Money(kotlin.math.abs(cents))
@@ -31,4 +31,13 @@ data class Money ( //todo: private constructor?
             .padStart(2, '0')
         return "$euro,$centPart"
     }
+
+    override fun equals(other: Any?): Boolean =
+        other is Money && cents == other.cents
+
+    override fun hashCode(): Int =
+        cents.hashCode()
+
+    override fun toString(): String = //for debugging only
+        "Money(cents=$cents)"
 }
