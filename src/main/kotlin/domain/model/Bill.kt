@@ -1,9 +1,10 @@
 package main.kotlin.domain.model
 
+import main.kotlin.domain.model.vo.BillId
 import main.kotlin.domain.model.vo.Money
-import java.util.*
 
 class Bill (
+    val id: BillId,
     val payer: Person,
     //todo: >0
     val amount: Money,
@@ -12,20 +13,19 @@ class Bill (
     //todo: valueObject
     val debtors: Debtors
 ) {
-    val id: UUID = UUID.randomUUID() //DDD: important because pointers in databases
-
     companion object {
         fun create(
+            id: BillId,
             payer: Person,
-            amount: Long,
+            amount: Money,
             debtors: List<Person>
         ): Bill {
             require(debtors.isNotEmpty())
-            return Bill(payer, Money.ofCents(amount), Debtors.of(debtors))
+            return Bill(BillId.new(), payer, amount, Debtors.of(debtors))
         }
     }
 
     override fun toString(): String {
-        return "Payer: $payer\tAmount: $amount\tmain.kotlin.interface.cli.main.kotlin.domain.model.Debtors: $debtors"
+        return "Payer: $payer\tAmount: $amount\tDebtors: $debtors"
     }
 }

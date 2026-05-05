@@ -3,6 +3,7 @@ package main.kotlin.application.usecase
 import main.kotlin.application.parser.BillParser
 import main.kotlin.domain.model.Bill
 import main.kotlin.domain.model.Person
+import main.kotlin.domain.model.vo.BillId
 import main.kotlin.domain.model.vo.PersonId
 import main.kotlin.domain.model.vo.PersonName
 import main.kotlin.domain.repository.PersonRepository
@@ -19,7 +20,7 @@ class ImportBillsUseCase(
             val payer = resolvePerson(parsed.payerName)
             val debtors = parsed.debtorNames.map { resolvePerson(it) }
 
-            Bill.create(payer, parsed.amount, debtors)
+            Bill.create(BillId.new(), payer, parsed.amount, debtors)
         }
     }
 

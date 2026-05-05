@@ -1,6 +1,7 @@
 package main.kotlin.application.parser
 
 import main.kotlin.application.dto.ParsedBill
+import main.kotlin.domain.model.vo.Money
 import main.kotlin.domain.model.vo.PersonName
 
 //DTO: Data Transfer Object
@@ -14,7 +15,7 @@ class BillParser {
 
         return ParsedBill(
             payerName = PersonName.create(parts[0]).getOrThrow(),
-            amount = parts[1].toCents(),
+            amount = Money.ofCents(parts[1].toCents()),
             debtorNames = parts[2].split(",").map { PersonName.create(it).getOrThrow() }
         )
     }
