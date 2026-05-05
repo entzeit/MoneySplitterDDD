@@ -23,7 +23,7 @@ class TransactionCalculator {
 
             val amount = calculateSettlement(min.value, max.value)
             result.add(
-                Transaction(
+                Transaction.create(
                     id = idProvider(),
                     from = min.key,
                     to = max.key,

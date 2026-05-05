@@ -1,9 +1,11 @@
 package main.kotlin.moneysplitter.domain.model.vo
 
 class Money private constructor (
-    val cents: Long,
+    private val _cents: Long,
     //todo: val currency: Currency
 ) : Comparable<Money> {
+    val cents: Long get() = _cents  // Read-only access when truly needed
+
     companion object {
         fun ofCents(cents: Long) =
             Money(cents)

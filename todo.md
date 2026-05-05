@@ -17,6 +17,9 @@
     * CachedBalanceService -> Clean Architecture style
 * CSP problem: add constraint for transactions e.g. A doesn't want to send money to C but to B
 
+late:
+* Domain-specific result type for control flow with errors
+
 ChatGPT Prompt:
 I am a professional developer. 
 I need some help converting a simple Kotlin project that has no architecture to Domain Driven Design and I need some advice for this.

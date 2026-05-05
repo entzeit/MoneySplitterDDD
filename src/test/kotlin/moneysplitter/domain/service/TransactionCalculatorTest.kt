@@ -38,7 +38,7 @@ class TransactionCalculatorTest {
         val result = calculator.calculate(balances) { txId }
 
         assertEquals(1, result.size)
-        assertEquals(Transaction(txId, alice, bob, Money.ofCents(100)).toTestDto(), result[0].toTestDto())
+        assertEquals(Transaction.create(txId, alice, bob, Money.ofCents(100)).toTestDto(), result[0].toTestDto())
     }
 
     @Test
