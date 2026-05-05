@@ -18,8 +18,7 @@ class TransactionCalculator {
             val min = mutable.minByOrNull { it.value.cents }!!
             val max = mutable.maxByOrNull { it.value.cents }!!
 
-            // Stop if all are settled
-            if (min.value.cents >= 0) break //todo: not really necessary because it always adds up
+            check(min.value.cents < 0) { "Invariant violated: balances don't sum to zero" }
 
             val amount = calculateSettlement(min.value, max.value)
             result.add(

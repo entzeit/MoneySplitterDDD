@@ -1,4 +1,4 @@
-* add multiple Groups
+* define Groups and add behaviour
 * remove negative money and add debt concept?
 * Debors: 
   * Remove debtor
@@ -18,7 +18,7 @@
 * CSP problem: add constraint for transactions e.g. A doesn't want to send money to C but to B
 
 late:
-* Domain-specific result type for control flow with errors
+* Update error handling with getOrThrow -> Domain-specific result type for control flow with errors?
 
 ChatGPT Prompt:
 I am a professional developer. 

@@ -15,7 +15,7 @@ class BillParser {
 
         return ParsedBill(
             payerName = PersonName.create(parts[0]).getOrThrow(),
-            amount = Money.ofCents(parts[1].toCents()), //todo: getOrThrow()
+            amount = Money.ofCents(parts[1].toCents()),
             debtorNames = parts[2].split(",").map { PersonName.create(it).getOrThrow() }
         )
     }

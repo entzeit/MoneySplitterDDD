@@ -19,7 +19,7 @@ class Group private constructor(
     }
 
     fun addBill(bill: Bill) {
-        require(bill.payer in _members) { "Payer must be a group member" } //todo: ErrorHandling?
+        require(bill.payer in _members) { "Payer must be a group member" }
         require(bill.debtors.asList().all { it in _members }) { "All debtors must be group members" }
         _bills.add(bill)
     }
