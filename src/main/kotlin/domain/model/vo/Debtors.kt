@@ -1,4 +1,6 @@
-package main.kotlin.domain.model
+package main.kotlin.domain.model.vo
+
+import main.kotlin.domain.model.Person
 
 //Value Object
 class Debtors private constructor(
@@ -53,22 +55,3 @@ class Debtors private constructor(
 
     override fun hashCode() = people.toSet().hashCode()
 }
-
-/**
- * Model the Concept, Not Just the Constraint
- * ✔ If the rule is simple and local
- * Keep require(debtors.isNotEmpty()) inside Bill.
- * ✔ If the concept has behavior
- * Create a Value Object.
- * Example:
- * If later you need:
- * Split calculation
- * Remove debtor
- * Add debtor
- * Equal shares vs weighted shares
- * Then Debtors absolutely deserves to be a Value Object.
- *
- * Why no data class:
- * no copy(), no wrong equals() or hashCode()
- * better use class instead of data class because data class creates copy() which can bypass init requirements and create invariants
- */

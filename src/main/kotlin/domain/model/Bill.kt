@@ -1,27 +1,24 @@
 package main.kotlin.domain.model
 
 import main.kotlin.domain.model.vo.BillId
+import main.kotlin.domain.model.vo.Debtors
 import main.kotlin.domain.model.vo.Money
 
 class Bill (
     val id: BillId,
     val payer: Person,
-    //todo: >0
     val amount: Money,
-    //DDD: debtors should never be empty -> making illegal states unrepresentable
-    //DDD: Model the Concept, Not Just the Constraint -> ValueObject for things that have constraints
-    //todo: valueObject
     val debtors: Debtors
 ) {
-    companion object {
+    companion object { //Factory
         fun create(
             id: BillId,
             payer: Person,
             amount: Money,
             debtors: List<Person>
         ): Bill {
-            require(debtors.isNotEmpty())
-            return Bill(BillId.new(), payer, amount, Debtors.of(debtors))
+            require(amount.cents >= 0) { "Amount must be positive in Bill" }
+            return Bill(id, payer, amount, Debtors.of(debtors))
         }
     }
 

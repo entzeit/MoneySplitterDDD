@@ -6,6 +6,19 @@
 | Bill    | single source of truth |
 | Balance | computed result        |
 
+# General
+- making illegal states unrepresentable
+
+
+# Entity
+
+Use: 
+```
+class <class>
+```
+✔ If the constraint is simple and local
+Use require inside Factory
+✔ If the concept has behavior
 
 # Value Object
 A type is a Value Object if it:
