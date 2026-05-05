@@ -8,7 +8,7 @@ import main.kotlin.moneysplitter.domain.model.vo.PersonId
 value class Balances(private val value: Map<PersonId, Money>) {
 
     operator fun get(id: PersonId): Money =
-        value[id] ?: Money.Companion.ZERO
+        value[id] ?: Money.ZERO
 
     fun toMap(): Map<PersonId, Money> = value.toMap()
 }

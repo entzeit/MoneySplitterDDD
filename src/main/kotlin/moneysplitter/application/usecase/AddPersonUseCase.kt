@@ -10,7 +10,7 @@ class AddPersonUseCase(
 ) {
     fun execute(name: PersonName): Person {
         val person =
-            Person(PersonId.Companion.new(), name) //Application owns identity -> no hidden randomness -> easy to test
+            Person(PersonId.new(), name) //Application owns identity -> no hidden randomness -> easy to test
         return personRepository.save(person)
     }
 }

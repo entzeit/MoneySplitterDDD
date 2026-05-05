@@ -8,7 +8,7 @@ import main.kotlin.moneysplitter.domain.model.vo.TransactionId
 
 class TransactionCalculator {
 
-    fun calculate(balances: Balances): List<Transaction> {
+    fun calculate(balances: Balances, idProvider: () -> TransactionId = { TransactionId.new() }): List<Transaction> {
         // Work on a mutable copy (pure function from outside perspective)
         val mutable = balances.toMap()
             .filterValues { it.cents != 0L } // ignore zero balances
@@ -24,7 +24,7 @@ class TransactionCalculator {
             val amount = calculateSettlement(min.value, max.value)
             result.add(
                 Transaction(
-                    id = TransactionId.Companion.new(),
+                    id = idProvider(),
                     from = min.key,
                     to = max.key,
                     amount = amount
@@ -55,7 +55,7 @@ class TransactionCalculator {
     ) {
         balances[from] = balances[from]!! + amount
         balances[to] = balances[to]!! - amount
-        if (balances[from] == Money.Companion.ofCents(0L)) balances.remove(from)
-        if (balances[to] == Money.Companion.ofCents(0L)) balances.remove(to)
+        if (balances[from] == Money.ofCents(0L)) balances.remove(from)
+        if (balances[to] == Money.ofCents(0L)) balances.remove(to)
     }
 }

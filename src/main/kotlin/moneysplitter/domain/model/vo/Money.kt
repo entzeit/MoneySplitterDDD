@@ -24,14 +24,6 @@ class Money private constructor (
         return Money(Math.subtractExact(this.cents, other.cents))
     }
 
-    fun formatToEuro(): String {
-        val euro = cents / 100
-        val centPart = kotlin.math.abs(cents % 100)
-            .toString()
-            .padStart(2, '0')
-        return "$euro,$centPart"
-    }
-
     override fun equals(other: Any?): Boolean =
         other is Money && cents == other.cents
 

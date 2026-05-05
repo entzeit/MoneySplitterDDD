@@ -1,7 +1,6 @@
 package main.kotlin.moneysplitter.domain.model.vo
 
-@JvmInline
-value class PersonName(val value: String) {
+data class PersonName(val value: String) {
     //validation
     init {
         require(value.isNotBlank()) { "Name cannot be blank" }

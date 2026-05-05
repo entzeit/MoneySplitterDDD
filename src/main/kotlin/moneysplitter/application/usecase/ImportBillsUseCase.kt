@@ -20,12 +20,12 @@ class ImportBillsUseCase(
             val payer = resolvePerson(parsed.payerName)
             val debtors = parsed.debtorNames.map { resolvePerson(it) }
 
-            Bill.Companion.create(BillId.Companion.new(), payer, parsed.amount, debtors)
+            Bill.create(BillId.new(), payer, parsed.amount, debtors)
         }
     }
 
     private fun resolvePerson(name: PersonName): Person {
         return personRepository.findByName(name)
-            ?: Person(PersonId.Companion.new(), name).also { personRepository.save(it) }
+            ?: Person(PersonId.new(), name).also { personRepository.save(it) }
     }
 }

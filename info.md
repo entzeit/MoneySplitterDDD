@@ -35,7 +35,7 @@ Use
 value class <class>
 ```
 for Value Object where exactly one underlying property exists.
-(ype-safe wrapper around a single value with (almost) zero runtime overhead)
+(type-safe wrapper around a single value with (almost) zero runtime overhead)
 
 For multiple properties, use:
 ```

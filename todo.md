@@ -4,6 +4,7 @@
   * Remove debtor
   * Add debtor
   * Equal shares vs weighted shares
+* add more tests
 * implement multiple people with same name 
   * PersonId = identity, PersonName = attribute (not uniqueness constraint) 
   * only unique for creating from file but not in general
